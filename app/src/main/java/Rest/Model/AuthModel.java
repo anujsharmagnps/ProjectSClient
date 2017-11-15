@@ -9,6 +9,7 @@ import com.smartecab.projectsdriver.ModelCallback;
 import javax.inject.Inject;
 
 import Rest.Service.AuthService;
+import Rest.ViewModel.Token;
 import Rest.ViewModel.User;
 import rx.Observable;
 import rx.Subscriber;
@@ -41,7 +42,6 @@ public class AuthModel {
         getUserData();
     }
 
-
     public boolean isUserLogin() {
         getUserData();
 
@@ -49,6 +49,25 @@ public class AuthModel {
             return true;
         }
         return false;
+    }
+
+    public Subscription LoginUser(String userName, String password, String grantType, final ModelCallback<Token> callback){
+        return authService.validateUser(userName, password, grantType)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<Token>() {
+                    @Override
+                    public void onCompleted() {  }
+
+                    @Override
+                    public void onError(Throwable t) {
+                        callback.onError(t.getMessage());
+                    }
+
+                    @Override
+                    public void onNext(Token token) { callback.onSuccess(token); }
+                });
+
     }
 
     public void Logout(final ModelCallback<User> callback) {
@@ -121,24 +140,24 @@ public class AuthModel {
     }
 
 
-    public Subscription getUserByFBId(String FBId, final ModelCallback<User> callback) {
-        return authService.getUserByFBId(FBId)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<User>() {
-                    @Override
-                    public void onCompleted() {
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        callback.onError(e.getMessage());
-                    }
-
-                    @Override
-                    public void onNext(User user) {
-                        callback.onSuccess(user);
-                    }
-                });
-    }
+//    public Subscription getUserByFBId(String FBId, final ModelCallback<User> callback) {
+//        return authService.getUserByFBId(FBId)
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(new Subscriber<User>() {
+//                    @Override
+//                    public void onCompleted() {
+//                    }
+//
+//                    @Override
+//                    public void onError(Throwable e) {
+//                        callback.onError(e.getMessage());
+//                    }
+//
+//                    @Override
+//                    public void onNext(User user) {
+//                        callback.onSuccess(user);
+//                    }
+//                });
+//    }
 }

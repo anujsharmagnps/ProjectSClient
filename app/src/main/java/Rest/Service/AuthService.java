@@ -1,5 +1,6 @@
 package Rest.Service;
 
+import Rest.ViewModel.Token;
 import Rest.ViewModel.User;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -13,19 +14,12 @@ import rx.Observable;
  */
 
 public interface AuthService {
-
-    @POST("/token")
-    Observable<User> validateUser(@Field("username") String userName, @Field("password") String password);
-
-    @GET("user/{value}/getByFBId")
-    Observable<User> getUserByFBId(@Path("value") String FbId);
-
-    @GET("user/{value}/getByUserName")
-    Observable<User> getUserByUserName(@Path("value") String UserName);
-
     @FormUrlEncoded
-    @POST("user/1/RegisterUser")
-    Observable<User> createUser(@Field("UserName") String UserName, @Field("FacebookId") String FacebookId);
+    @POST("token")
+    Observable<Token> validateUser(@Field("username") String userName, @Field("password") String password, @Field("grant_type") String grant_type );
+
+    @GET("user/{value}/getById")
+    Observable<User> getUserById(@Path("value") String FbId);
 
     @FormUrlEncoded
     @POST("user/{Id}/RegisterDevice")

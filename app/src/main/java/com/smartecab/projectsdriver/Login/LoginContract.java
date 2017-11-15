@@ -9,7 +9,7 @@ import com.smartecab.projectsdriver.Base.BaseView;
 
 public interface LoginContract {
     public interface Presenter extends BasePresenter {
-        void Login(String UserId, String UserName, String PhotoUrl);
+        void Login(String UserId, String UserName);
 
         void CreateUser();
     }
