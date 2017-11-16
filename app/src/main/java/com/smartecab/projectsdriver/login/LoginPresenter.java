@@ -1,4 +1,4 @@
-package com.smartecab.projectsdriver.Login;
+package com.smartecab.projectsdriver.login;
 
 import com.smartecab.projectsdriver.DriverApplication;
 import com.smartecab.projectsdriver.ModelCallback;

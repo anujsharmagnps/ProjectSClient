@@ -2,7 +2,7 @@ package com.smartecab.projectsdriver.DI.Component;
 
 import com.smartecab.projectsdriver.Base.BaseActivity;
 import com.smartecab.projectsdriver.DI.Module.AppModule;
-import com.smartecab.projectsdriver.Login.LoginPresenter;
+import com.smartecab.projectsdriver.login.LoginPresenter;
 
 import javax.inject.Singleton;
 

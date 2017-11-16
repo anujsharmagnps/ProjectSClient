@@ -1,13 +1,9 @@
-package com.smartecab.projectsdriver.Login;
+package com.smartecab.projectsdriver.login;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Toast;
-
-import com.smartecab.projectsdriver.Base.BaseActivity;
-import com.smartecab.projectsdriver.MainActivity;
-import com.smartecab.projectsdriver.R;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
