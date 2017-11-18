@@ -22,7 +22,7 @@ import com.smartecab.projectsdriver.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class NavigationFragment extends BaseFragment implements OnMapReadyCallback{
+public class NavigationFragment extends BaseFragment {
 
     GoogleMap mGoogleMap;
     MapView   mMapView;
@@ -41,23 +41,24 @@ public class NavigationFragment extends BaseFragment implements OnMapReadyCallba
        return mView;
     }
 
-    @Override
-    public void  onViewCreated(View view, Bundle savedInstanceState){
-        super.onViewCreated(view,savedInstanceState);
-        mMapView =(MapView) mView.findViewById(R.id.map);
-        if (mMapView !=null){
-            mMapView.onCreate(null);
-            mMapView.onResume();
-            mMapView.getMapAsync(this);
-        }
-    }
- @Override
-    public  void onMapReady(GoogleMap googleMap) {
-     MapsInitializer.initialize(getContext());
-     mGoogleMap = googleMap;
-     googleMap.setMapType(googleMap.MAP_TYPE_NORMAL);
-     googleMap.addMarker(new MarkerOptions().position(new LatLng(40.689247,-74.044502)).title("statue of liberty").snippet("I hope to go there some day"));
-     CameraPosition Liberty = CameraPosition.builder().target(new LatLng(40.689247,-74.044502)).zoom(16).bearing(0).tilt(45).build();
-     googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(Liberty));
- }
+//    @Override
+//    public void  onViewCreated(View view, Bundle savedInstanceState){
+//        super.onViewCreated(view,savedInstanceState);
+//        mMapView =(MapView) mView.findViewById(R.id.map);
+//        if (mMapView !=null){
+//            mMapView.onCreate(null);
+//            mMapView.onResume();
+//
+//            mMapView.getMapAsync(this);
+//        }
+//    }
+// @Override
+//    public  void onMapReady(GoogleMap googleMap) {
+//     MapsInitializer.initialize(getContext());
+//     mGoogleMap = googleMap;
+//     googleMap.setMapType(googleMap.MAP_TYPE_NORMAL);
+//     googleMap.addMarker(new MarkerOptions().position(new LatLng(40.689247,-74.044502)).title("statue of liberty").snippet("I hope to go there some day"));
+//     CameraPosition Liberty = CameraPosition.builder().target(new LatLng(40.689247,-74.044502)).zoom(16).bearing(0).tilt(45).build();
+//     googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(Liberty));
+// }
 }

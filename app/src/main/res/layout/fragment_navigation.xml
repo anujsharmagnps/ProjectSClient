@@ -3,9 +3,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.smartecab.projectsdriver.navigation.NavigationFragment">
-    <com.google.android.gms.maps.MapView
+
+    <fragment xmlns:map="http://schemas.android.com/apk/res-auto"
+        android:name="com.google.android.gms.maps.MapFragment"
+        android:id="@+id/map"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/map"
-        />
+        map:cameraBearing="112.5"
+        map:cameraTargetLat="26.860482"
+        map:cameraTargetLng="80.937802"
+        map:cameraTilt="0"
+        map:cameraZoom="18"
+        map:mapType="normal"
+        map:uiCompass="true"
+        map:uiRotateGestures="true"
+        map:uiScrollGestures="true"
+        map:uiTiltGestures="true"
+        map:uiZoomControls="true"
+        map:uiZoomGestures="true"
+        tools:ignore="MissingPrefix"/>
+
 </FrameLayout>

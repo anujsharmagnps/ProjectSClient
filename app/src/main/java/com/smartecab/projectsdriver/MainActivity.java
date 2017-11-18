@@ -1,26 +1,41 @@
 package com.smartecab.projectsdriver;
 
+import android.content.Context;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
+import android.util.Log;
 import android.view.MenuItem;
+import android.widget.Toast;
 
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationCallback;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationResult;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.smartecab.projectsdriver.Listener.LocationUpdateListener;
 import com.smartecab.projectsdriver.navigation.NavigationFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private FragmentManager fragmentManager;
+    public LocationManager locationManager;
+    public LocationUpdateListener listener;
+    private static final long MINIMUM_DISTANCE_CHANGE_FOR_UPDATES = 0; // in Meters
+    private static final long MINIMUM_TIME_BETWEEN_UPDATES = 0; // in Milliseconds
+    private FusedLocationProviderClient mFusedLocationClient;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +43,49 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        listener = new LocationUpdateListener(MainActivity.this);
+        try {
+
+            mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+
+            mFusedLocationClient.getLastLocation()
+                    .addOnSuccessListener(this, new OnSuccessListener<Location>() {
+                        @Override
+                        public void onSuccess(Location location) {
+                            // Got last known location. In some rare situations this can be null.
+                            if (location != null) {
+                                // Logic to handle location object
+                                Toast.makeText(MainActivity.this, "Provider Disabled", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+            LocationRequest mLocationRequest = LocationRequest.create();
+            mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+            mLocationRequest.setInterval(3 * 1000);
+            mLocationRequest.setFastestInterval(3 * 1000);
+
+            LocationCallback mLocationCallback = new LocationCallback() {
+                @Override
+                public void onLocationResult(LocationResult locationResult) {
+                    for (Location location : locationResult.getLocations()) {
+                        // Update UI with location data
+                        // ...
+                        Log.i("MapsActivity", "Location: " + location.getLatitude() + " " + location.getLongitude());
+                    }
+                }
+
+                ;
+            };
+            mFusedLocationClient.requestLocationUpdates(mLocationRequest, mLocationCallback, null);
+//            locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, MINIMUM_TIME_BETWEEN_UPDATES, MINIMUM_DISTANCE_CHANGE_FOR_UPDATES, listener);
+//            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, MINIMUM_TIME_BETWEEN_UPDATES, MINIMUM_DISTANCE_CHANGE_FOR_UPDATES, listener);
+        } catch (SecurityException ex) {
+
+        }
+
+//        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, listener);
 
 ////        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 ////        fab.setOnClickListener(new View.OnClickListener() {
@@ -92,6 +150,7 @@ public class MainActivity extends AppCompatActivity
             transaction.addToBackStack(tag);
         transaction.commit();
     }
+
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -116,4 +175,5 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
 }
