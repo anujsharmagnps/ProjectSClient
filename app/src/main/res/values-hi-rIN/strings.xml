@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--Login   -->
+    <string name="appTitle"> चालक ऍप </string>
+    <string name="email">ईमेल डाले</string>
+    <string name="password">पासवर्ड डाले </string>
+    <string name="login">लॉगिन करे </string>
+    <!--Login-->
+    <string name="profile">प्रोफाइल </string>
+    <string name="ride">राइड </string>
+    <string name="settings">सेटिंग्स </string>
+    <string name="share">साझा करे </string>
+    <string name="logout">लॉगआउट </string>
+    <!--menu-->
+
+</resources>

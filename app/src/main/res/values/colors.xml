@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">@android:color/white</color>
-    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorPrimaryDark">#efc460</color>
     <color name="colorAccent">#FF4081</color>
 
     <color name="black_overlay">#66000000</color>
@@ -9,5 +9,6 @@
     <color name="display_fourground_black">#db160f0f</color>
     <color name="display_thumb_black">#db160f0f</color>
     <color name="enable_thumb_yellow">#e6a307</color>
+    <color name="profile_frag">#de9d0a</color>
 
 </resources>

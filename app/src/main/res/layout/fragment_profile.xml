@@ -1,0 +1,152 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    tools:context="com.smartecab.projectsdriver.fragment.ProfileFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:animationCache="false"
+        android:padding="15dp">
+
+
+        <ImageView
+            android:id="@+id/ing_driver_image"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_gravity="left"
+
+            android:src="@drawable/logo" />
+
+        <TextView
+            android:id="@+id/txt_driver_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/txt_driver_mobile_no"
+            android:layout_alignStart="@+id/txt_driver_mobile_no"
+            android:layout_marginBottom="13dp"
+            android:layout_marginTop="10dp"
+            android:text="Driver Name"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txt_driver_mobile_no"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/txt_driver_name"
+            android:layout_marginEnd="11dp"
+            android:layout_marginRight="11dp"
+            android:text="1234567890"
+            android:textSize="18dp" />
+
+        <Button
+            android:id="@+id/btn_change_pic"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/ing_driver_image"
+            android:text="change"
+            android:textSize="12dp" />
+
+        <ImageView
+            android:id="@+id/img_car_icon"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_below="@+id/linearLayout_vehicle"
+            android:layout_gravity="left"
+            android:layout_marginTop="40dp"
+
+            android:src="@drawable/logo" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout_vehicle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/btn_change_pic"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_weight="0"
+                android:text="Vehicle"
+                android:textSize="17dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="20dp"
+                android:layout_weight="2"
+                android:background="@color/profile_frag" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/txt_car_no"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/txt_driver_mobile_no"
+            android:layout_alignParentRight="true"
+            android:layout_alignRight="@+id/txt_driver_mobile_no"
+            android:layout_alignTop="@+id/img_car_icon"
+            android:text="Car No "
+            android:textSize="17dp" />
+
+        <TextView
+            android:id="@+id/txt_car_manufacturer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/txt_car_no"
+            android:layout_marginTop="5dp"
+            android:text="Car Manufacturer"
+            android:textSize="17dp" />
+
+        <TextView
+            android:id="@+id/txt_car_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/txt_car_manufacturer"
+            android:layout_marginTop="5dp"
+            android:text="Car Type"
+            android:textSize="17dp" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout_owner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/img_car_icon"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_weight="0"
+                android:text="Owner"
+                android:textSize="17dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="20dp"
+                android:layout_weight="2"
+                android:background="@color/profile_frag" />
+        </LinearLayout>
+    </RelativeLayout>
+</FrameLayout>
