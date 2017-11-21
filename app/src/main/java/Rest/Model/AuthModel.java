@@ -138,26 +138,4 @@ public class AuthModel {
         PhotoUrl = sharedPreferences.getString(PHOTO_URL, "");
         FirebaseToken = sharedPreferences.getString(FIREBASE_TOKEN, "");
     }
-
-
-//    public Subscription getUserByFBId(String FBId, final ModelCallback<User> callback) {
-//        return authService.getUserByFBId(FBId)
-//                .subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(new Subscriber<User>() {
-//                    @Override
-//                    public void onCompleted() {
-//                    }
-//
-//                    @Override
-//                    public void onError(Throwable e) {
-//                        callback.onError(e.getMessage());
-//                    }
-//
-//                    @Override
-//                    public void onNext(User user) {
-//                        callback.onSuccess(user);
-//                    }
-//                });
-//    }
 }

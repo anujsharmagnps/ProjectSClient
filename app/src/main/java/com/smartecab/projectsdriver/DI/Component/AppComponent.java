@@ -2,11 +2,13 @@ package com.smartecab.projectsdriver.DI.Component;
 
 import com.smartecab.projectsdriver.Base.BaseActivity;
 import com.smartecab.projectsdriver.DI.Module.AppModule;
+import com.smartecab.projectsdriver.Listener.AppReceiver;
 import com.smartecab.projectsdriver.login.LoginPresenter;
 
 import javax.inject.Singleton;
 
 import Rest.Model.AuthModel;
+import Rest.Model.DriverModel;
 import dagger.Component;
 
 /**
@@ -20,6 +22,9 @@ public interface AppComponent {
 
     //Model
     void inject(AuthModel authModel);
+    void inject(DriverModel driverModel);
 
     void inject(BaseActivity baseActivity);
+
+    void inject(AppReceiver appReceiver);
 }

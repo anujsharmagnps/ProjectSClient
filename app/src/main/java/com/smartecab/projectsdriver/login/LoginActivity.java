@@ -2,13 +2,12 @@ package com.smartecab.projectsdriver.login;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
 import com.smartecab.projectsdriver.Base.BaseActivity;
-import com.smartecab.projectsdriver.MainActivity;
+import com.smartecab.projectsdriver.main.MainActivity;
 import com.smartecab.projectsdriver.R;
 
 import butterknife.BindView;
@@ -30,6 +29,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.View{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
         ButterKnife.bind(this);
         presenter = new LoginPresenter(this);
         loginButton.setOnClickListener(new View.OnClickListener() {
@@ -39,6 +39,17 @@ public class LoginActivity extends BaseActivity implements LoginContract.View{
             }
         });
     }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        //final LocationSettingsStates states = LocationSettingsStates.fromIntent(intent);
+        switch (requestCode) {
+            case 1001:
+
+                break;
+        }
+    }
+
+
 
     @Override
     public void goToMain() {

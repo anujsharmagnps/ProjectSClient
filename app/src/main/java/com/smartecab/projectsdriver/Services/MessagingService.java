@@ -11,12 +11,8 @@ import android.util.Log;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 import com.smartecab.projectsdriver.DriverApplication;
-import com.smartecab.projectsdriver.MainActivity;
+import com.smartecab.projectsdriver.main.MainActivity;
 import com.smartecab.projectsdriver.R;
-
-import org.greenrobot.eventbus.EventBus;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 /**
  * Created by rahul.sharma01 on 11/6/2017.

@@ -33,9 +33,7 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (Build.VERSION.SDK_INT == Build.VERSION_CODES.M ) {
-            checkPermission();
-        }
+
         checkGPS();
     }
 
@@ -109,16 +107,7 @@ public class SplashActivity extends AppCompatActivity {
         }
     }
 
-    public void checkPermission(){
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED ||
-                ContextCompat.checkSelfPermission(this,Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED
-                ){//Can add more as per requirement
 
-            ActivityCompat.requestPermissions(this,
-                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.ACCESS_COARSE_LOCATION},
-                    123);
-        }
-    }
 
     public boolean isInternetAvailable() {
         try {

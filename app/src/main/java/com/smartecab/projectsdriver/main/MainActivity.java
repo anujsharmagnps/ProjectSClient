@@ -1,4 +1,4 @@
-package com.smartecab.projectsdriver;
+package com.smartecab.projectsdriver.main;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -32,8 +32,9 @@ import com.google.android.gms.tasks.Task;
 import com.smartecab.projectsdriver.Base.BaseActivity;
 import com.smartecab.projectsdriver.Base.Constants;
 import com.smartecab.projectsdriver.Event.SettingChange;
+import com.smartecab.projectsdriver.R;
 import com.smartecab.projectsdriver.fragment.ProfileFragment;
-import com.smartecab.projectsdriver.login.LoginActivity;
+import com.smartecab.projectsdriver.fragment.RideFragment;
 import com.smartecab.projectsdriver.navigation.NavigationFragment;
 
 import org.greenrobot.eventbus.EventBus;
@@ -164,7 +165,8 @@ public class MainActivity extends BaseActivity
             ProfileFragment fragment = new ProfileFragment();
             showFragment(fragment, "profile", true, false);
         } else if (id == R.id.nav_ride) {
-
+            RideFragment fragment = new RideFragment();
+            showFragment(fragment, "profile", true, false);
 //        } else if (id == R.id.nav_slideshow) {
 
         } else if (id == R.id.nav_settings) {
