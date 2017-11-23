@@ -9,9 +9,6 @@ import android.view.ViewGroup;
 
 import com.smartecab.projectsdriver.R;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class RideFragment extends Fragment {
 
 

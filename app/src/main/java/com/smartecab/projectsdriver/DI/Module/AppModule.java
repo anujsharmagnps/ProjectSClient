@@ -16,7 +16,9 @@ import java.util.concurrent.TimeUnit;
 import javax.inject.Singleton;
 
 import Rest.Model.AuthModel;
+import Rest.Model.DriverModel;
 import Rest.Service.AuthService;
+import Rest.Service.DriverService;
 import dagger.Module;
 import dagger.Provides;
 import okhttp3.Cache;
@@ -111,8 +113,19 @@ private static final String BASE_URL = "http://103.48.51.159:51421/driverapi/";
 
     @Provides
     @Singleton
+    DriverService providesDriverSrvice(Retrofit retrofit) {
+        return retrofit.create(DriverService.class);
+    }
+    @Provides
+    @Singleton
     AuthModel providesAuthModel() {
         return new AuthModel();
+    }
+
+    @Provides
+    @Singleton
+    DriverModel providesDrivermodel() {
+        return new DriverModel();
     }
 
 }
