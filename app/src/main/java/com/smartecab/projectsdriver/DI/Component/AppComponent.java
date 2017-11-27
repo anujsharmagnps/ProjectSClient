@@ -4,6 +4,7 @@ import com.smartecab.projectsdriver.Base.BaseActivity;
 import com.smartecab.projectsdriver.DI.Module.AppModule;
 import com.smartecab.projectsdriver.Listener.AppReceiver;
 import com.smartecab.projectsdriver.login.LoginPresenter;
+import com.smartecab.projectsdriver.main.MainPresenter;
 
 import javax.inject.Singleton;
 
@@ -19,7 +20,7 @@ import dagger.Component;
 public interface AppComponent {
     //Presenter
     void inject(LoginPresenter loginPresenter);
-
+    void inject(MainPresenter mainPresenter);
     //Model
     void inject(AuthModel authModel);
     void inject(DriverModel driverModel);

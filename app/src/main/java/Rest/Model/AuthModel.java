@@ -9,6 +9,7 @@ import com.smartecab.projectsdriver.ModelCallback;
 import javax.inject.Inject;
 
 import Rest.Service.AuthService;
+import Rest.ViewModel.Profile;
 import Rest.ViewModel.Token;
 import Rest.ViewModel.User;
 import rx.Observable;
@@ -23,13 +24,13 @@ import rx.schedulers.Schedulers;
  */
 
 public class AuthModel {
-    public static final String USER_NAME = "user_name";
-    public static final String USER_ID = "user_id";
-    public static final String PHOTO_URL = "photo_url";
+    public static final String USER_ID = "id";
+    public static final String ACCESS_TOKEN = "token";
     public static final String FIREBASE_TOKEN = "FirebaseToken";
-    public static String UserId;
-    public static String UserName, PhotoUrl, FirebaseToken;
-    public User CurrentUser;
+    public static String id;
+    public static String access_Token;
+    public static String firebase_Token;
+
     @Inject
     AuthService authService;
     @Inject
@@ -45,7 +46,7 @@ public class AuthModel {
     public boolean isUserLogin() {
         getUserData();
 
-        if (UserId != "") {
+        if (id != "") {
             return true;
         }
         return false;
@@ -53,6 +54,7 @@ public class AuthModel {
 
     public Subscription LoginUser(String userName, String password, String grantType, final ModelCallback<Token> callback){
         return authService.validateUser(userName, password, grantType)
+
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<Token>() {
@@ -65,18 +67,20 @@ public class AuthModel {
                     }
 
                     @Override
-                    public void onNext(Token token) { callback.onSuccess(token); }
+                    public void onNext(Token token) {  saveUserData(token.Id, token.access_token); callback.onSuccess(token);}
+
                 });
+
 
     }
 
     public void Logout(final ModelCallback<User> callback) {
-        saveUserData("","","");
+        saveUserData("","");
         UnRegisterDevicetoUser(callback);
     }
 
     private Subscription UnRegisterDevicetoUser(final ModelCallback<User> callback) {
-        return authService.UnRegisterDevice(UserId, FirebaseToken)
+        return authService.UnRegisterDevice(id  ,firebase_Token)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<User>() {
@@ -98,7 +102,7 @@ public class AuthModel {
     }
 
     private Subscription RegisterDevicetoUser(final ModelCallback<User> callback) {
-        return authService.RegisterDevice(UserId, FirebaseToken)
+        return authService.RegisterDevice(id, firebase_Token)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<User>() {
@@ -119,23 +123,18 @@ public class AuthModel {
                 });
     }
 
-    private void saveUserData(String UserName, String UserId, String photoUrl) {
+    private void saveUserData(String UserId, String acces_token) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        this.UserId = UserId;
-
-        this.UserName = UserName;
-        this.PhotoUrl = photoUrl;
+        this.id = UserId;
+        this.access_Token = acces_token;
 
         editor.putString(USER_ID, UserId);
-        editor.putString(USER_NAME, UserName);
-        editor.putString(PHOTO_URL, photoUrl);
+        editor.putString(ACCESS_TOKEN, acces_token);
         editor.apply();
     }
 
-    private void getUserData() {
-        UserId = sharedPreferences.getString(USER_ID, "");
-        UserName = sharedPreferences.getString(USER_NAME, "");
-        PhotoUrl = sharedPreferences.getString(PHOTO_URL, "");
-        FirebaseToken = sharedPreferences.getString(FIREBASE_TOKEN, "");
+    public void getUserData() {
+        id = sharedPreferences.getString(USER_ID, "");
+        access_Token = sharedPreferences.getString(ACCESS_TOKEN, "");
     }
 }

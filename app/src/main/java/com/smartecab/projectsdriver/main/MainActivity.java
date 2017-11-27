@@ -41,18 +41,22 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import Rest.ViewModel.Profile;
+
 public class MainActivity extends BaseActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, MainContract.View {
 
     private FragmentManager fragmentManager;
     private FusedLocationProviderClient mFusedLocationClient;
     private LocationRequest mLocationRequest;
+    private MainContract.Presenter presenter;
 
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         fragmentManager = getSupportFragmentManager();
         setContentView(R.layout.activity_main);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -110,6 +114,8 @@ public class MainActivity extends BaseActivity
         navigationView.setNavigationItemSelectedListener(this);
         NavigationFragment fragLeagueList = new NavigationFragment();
         showFragment(fragLeagueList, "Home", false, false);
+        presenter = new MainPresenter(this);
+        presenter.getDriverProfile();
     }
 
     @Override
@@ -255,5 +261,15 @@ public class MainActivity extends BaseActivity
     public void onStop() {
         EventBus.getDefault().unregister(this);
         super.onStop();
+    }
+
+    @Override
+    public void showDriverProfile(Profile profile) {
+showToast(profile.name);
+    }
+
+    @Override
+    public void showBlocking(Profile profile) {
+
     }
 }

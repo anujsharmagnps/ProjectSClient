@@ -37,6 +37,7 @@ public class LoginPresenter implements LoginContract.Presenter {
             public void onSuccess(Token response) {
                 view.hideProgress();
                 view.goToMain();
+
             }
 
             @Override

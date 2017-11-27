@@ -30,6 +30,7 @@ public class DriverModel {
     Context context;
 
     public DriverModel(){
+
         DriverApplication.getAppComponent().inject(this);
     }
 

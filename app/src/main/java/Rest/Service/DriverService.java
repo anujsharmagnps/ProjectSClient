@@ -10,6 +10,6 @@ import rx.Observable;
  */
 
 public interface DriverService {
-    @GET("/api/profile/{Id}")
+    @GET("api/profile/{Id}")
     Observable<Profile> getProfile(@Path("Id") String Id);
 }
