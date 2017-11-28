@@ -36,7 +36,7 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 @Module
 public class AppModule {
 //    private static final String BASE_URL = "http://192.168.1.7/ProjectS.Apps.Driver.API/";
-private static final String BASE_URL = "http://103.48.51.159:51421/driverapi/";
+private static final String BASE_URL = "http://www.api.smartecab.com/driverapi/";
 
     private Context context;
 

@@ -137,4 +137,12 @@ public class AuthModel {
         id = sharedPreferences.getString(USER_ID, "");
         access_Token = sharedPreferences.getString(ACCESS_TOKEN, "");
     }
+
+    public void cleanUserdata(){
+
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.remove(USER_ID);
+        editor.remove(access_Token);
+        editor.commit();
+    }
 }

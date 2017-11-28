@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="@dimen/nav_header_height"
@@ -20,26 +20,30 @@
         app:srcCompat="@android:drawable/sym_def_app_icon" />
 
     <TextView
+        android:id="@+id/txt_header_diver_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/imageView"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
         android:text="Driver Name"
-
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
-<LinearLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal">
+
     <TextView
-        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
-        android:text="Rating" />
-    <ImageView
+        android:text="Rating"
+        android:id="@+id/txt_rating"
+        android:layout_marginTop="5dp"
+        android:layout_below="@id/txt_header_diver_name"/>
+    <RatingBar
+        android:id="@+id/driver_ratingBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/txt_header_diver_name"
+        android:layout_toRightOf="@+id/txt_rating"
+        style=" ?android:attr/ratingBarStyleSmall"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        />
 
-        android:src="@drawable/ic_menu_camera"/>
-</LinearLayout>
-</LinearLayout>
+</RelativeLayout>

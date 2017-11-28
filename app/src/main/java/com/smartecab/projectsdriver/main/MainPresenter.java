@@ -23,8 +23,7 @@ public class MainPresenter implements MainContract.Presenter {
     @Inject
     AuthModel authModel;
 
-    MainPresenter(MainContract.View view)
-    {
+    MainPresenter(MainContract.View view) {
         this.view = view;
         DriverApplication.getAppComponent().inject(this);
         this.subscriptions = new CompositeSubscription();
@@ -43,7 +42,8 @@ public class MainPresenter implements MainContract.Presenter {
         driverModel.getDriverProfile(authModel.id, new ModelCallback<Profile>() {
             @Override
             public void onSuccess(Profile response) {
-view.showDriverProfile(response);
+                view.showDriverProfile(response);
+
             }
 
             @Override
@@ -66,5 +66,7 @@ view.showDriverProfile(response);
     @Override
     public void Logout() {
 
+        this.authModel.cleanUserdata();
+        this.view.navigateToLogin();
     }
 }

@@ -26,6 +26,8 @@ public interface MainContract {
 
         void showBlocking(Profile profile);
 
+        void navigateToLogin ();
+
     }
 
 }

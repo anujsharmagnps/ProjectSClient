@@ -15,6 +15,8 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
+import android.widget.RatingBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.api.ApiException;
@@ -35,6 +37,7 @@ import com.smartecab.projectsdriver.Event.SettingChange;
 import com.smartecab.projectsdriver.R;
 import com.smartecab.projectsdriver.fragment.ProfileFragment;
 import com.smartecab.projectsdriver.fragment.RideFragment;
+import com.smartecab.projectsdriver.login.LoginActivity;
 import com.smartecab.projectsdriver.navigation.NavigationFragment;
 
 import org.greenrobot.eventbus.EventBus;
@@ -180,6 +183,7 @@ public class MainActivity extends BaseActivity
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_logout) {
+            this.presenter.Logout();
 
         }
 
@@ -265,11 +269,22 @@ public class MainActivity extends BaseActivity
 
     @Override
     public void showDriverProfile(Profile profile) {
-showToast(profile.name);
+        TextView txtDriverName = (TextView) findViewById(R.id.txt_header_diver_name);
+        txtDriverName.setText(profile.name);
+        RatingBar driverRating = (RatingBar) findViewById(R.id.driver_ratingBar);
+        driverRating.setRating(profile.rating);
+        showToast(profile.name);
     }
 
     @Override
     public void showBlocking(Profile profile) {
 
+    }
+
+    @Override
+    public void navigateToLogin() {
+        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+        MainActivity.this.startActivity(intent);
+        finish();
     }
 }
